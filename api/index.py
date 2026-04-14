@@ -5,9 +5,9 @@ import re
 
 # 1. Загружаем модель и векторизатор при старте сервера
 try:
-    with open('baseline_model.pkl', 'rb') as f:
+    with open('../baseline_model.pkl', 'rb') as f:
         model = pickle.load(f)
-    with open('tfidf_vectorizer.pkl', 'rb') as f:
+    with open('../tfidf_vectorizer.pkl', 'rb') as f:
         vectorizer = pickle.load(f)
     print("✅ Модель и векторизатор успешно загружены.")
 except FileNotFoundError:

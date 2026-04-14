@@ -2,8 +2,6 @@ streamlit
 pandas
 matplotlib
 scikit-learn
-nltk
-fastapi==0.115.11
-uvicorn==0.34.0
+fastapi
+uvicorn
 scikit-learn==1.7.2
-pandas==2.2.3
