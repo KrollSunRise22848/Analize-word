@@ -56,15 +56,16 @@ async def predict(item: TextItem):
 
         # Если после очистки текст пуст, возвращаем нейтральный результат
         if not cleaned_text:
-            return {"toxicity_score": 0.0, "text": item.text, "is_toxic": False}
+            return {"toxicity_score": 0.0, "is_toxic": False, "original_text": item.text}
 
         # Векторизуем и получаем предсказание
         text_vector = vectorizer.transform([cleaned_text])
         toxicity = model.predict_proba(text_vector)[:, 1][0]
 
+        # ВАЖНО: приводим numpy.bool_ к стандартному bool
         return {
             "toxicity_score": round(float(toxicity), 5),
-            "is_toxic": toxicity >= 0.5,
+            "is_toxic": bool(toxicity >= 0.5),
             "original_text": item.text
         }
     except Exception as e:
